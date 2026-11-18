@@ -1,0 +1,449 @@
+/* =====================================================================
+   Proyecto Login - Hoja de estilos
+   Diseño responsive (mobile first) sin frameworks externos.
+   ===================================================================== */
+
+:root {
+    --azul-1: #2563c9;
+    --azul-2: #1fa3d1;
+    --primario: #4f6ef7;
+    --primario-oscuro: #3b57d9;
+    --texto: #1f2937;
+    --texto-suave: #4b5563;
+    --borde: #d4dae4;
+    --fondo-campo: #ffffff;
+    --error: #c62828;
+    --exito: #1b7a3d;
+    --info: #1d5fa8;
+    --enlace: #1a6fc4;
+    --radio: 10px;
+    --sombra: 0 18px 40px rgba(15, 35, 80, 0.25);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--texto);
+    background: linear-gradient(135deg, var(--azul-1) 0%, var(--azul-2) 100%);
+    background-attachment: fixed;
+}
+
+/* ---------- Contenedor y tarjeta ---------- */
+
+.contenedor {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+}
+
+.tarjeta {
+    width: 100%;
+    max-width: 420px;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: var(--sombra);
+    padding: 36px 32px 28px;
+    animation: aparecer 0.35s ease-out;
+}
+
+.tarjeta-ancha {
+    max-width: 640px;
+    text-align: center;
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    margin: 0 0 22px;
+    font-size: 1.75rem;
+    line-height: 1.25;
+    text-align: center;
+}
+
+h2 {
+    margin: 0 0 12px;
+    font-size: 1.05rem;
+    color: var(--texto-suave);
+    text-align: left;
+}
+
+.subtitulo {
+    margin: -8px 0 22px;
+    color: var(--texto-suave);
+    text-align: center;
+}
+
+/* ---------- Formularios ---------- */
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 13px 14px;
+    font: inherit;
+    color: var(--texto);
+    background: var(--fondo-campo);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input::placeholder {
+    color: #8a93a3;
+}
+
+input:focus {
+    border-color: var(--primario);
+    box-shadow: 0 0 0 3px rgba(79, 110, 247, 0.2);
+}
+
+input.invalido {
+    border-color: var(--error);
+    box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.12);
+}
+
+input.valido {
+    border-color: #3aa564;
+}
+
+/* Campo de contraseña con botón "ver" a la derecha */
+.con-boton {
+    position: relative;
+}
+
+.con-boton input {
+    padding-right: 48px;
+}
+
+.ver-password {
+    position: absolute;
+    top: 50%;
+    right: 6px;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.ver-password svg {
+    width: 20px;
+    height: 20px;
+    fill: #8a93a3;
+}
+
+.ver-password:hover svg,
+.ver-password.activo svg {
+    fill: var(--primario);
+}
+
+.ver-password:focus-visible {
+    outline: 2px solid var(--primario);
+}
+
+/* Mensajes de error debajo de cada campo */
+.error {
+    min-height: 1.35em;
+    margin: 4px 2px 6px;
+    font-size: 0.82rem;
+    color: var(--error);
+}
+
+/* Lista de requisitos de la contraseña */
+.requisitos {
+    list-style: none;
+    margin: 0 0 8px;
+    padding: 10px 12px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 10px;
+    font-size: 0.8rem;
+    color: var(--texto-suave);
+    background: #f5f7fb;
+    border-radius: 8px;
+}
+
+.requisitos li::before {
+    content: "○";
+    display: inline-block;
+    width: 1.2em;
+    color: #9aa3b2;
+}
+
+.requisitos li.cumple {
+    color: var(--exito);
+}
+
+.requisitos li.cumple::before {
+    content: "✔";
+    color: var(--exito);
+}
+
+/* ---------- Botones ---------- */
+
+.boton {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    padding: 13px 16px;
+    font: inherit;
+    font-weight: 600;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    background: var(--primario);
+    border: none;
+    border-radius: var(--radio);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.boton:hover {
+    background: var(--primario-oscuro);
+}
+
+.boton:active {
+    transform: scale(0.99);
+}
+
+.boton:focus-visible {
+    outline: 3px solid rgba(79, 110, 247, 0.45);
+    outline-offset: 2px;
+}
+
+.boton[disabled] {
+    opacity: 0.7;
+    cursor: wait;
+}
+
+.boton-enlace {
+    margin-bottom: 4px;
+}
+
+/* ---------- Enlaces ---------- */
+
+.enlaces {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-top: 18px;
+}
+
+.enlaces a {
+    color: var(--enlace);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.enlaces a:hover,
+.enlaces a:focus-visible {
+    text-decoration: underline;
+}
+
+/* ---------- Alertas ---------- */
+
+.alerta {
+    margin: 0 0 16px;
+    padding: 12px 14px;
+    font-size: 0.92rem;
+    border-radius: 8px;
+    border-left: 4px solid;
+    text-align: left;
+}
+
+.alerta-error {
+    color: #8e1c1c;
+    background: #fdecec;
+    border-color: var(--error);
+}
+
+.alerta-exito {
+    color: #145c2e;
+    background: #e8f6ee;
+    border-color: var(--exito);
+}
+
+.alerta-info {
+    color: #17497f;
+    background: #e9f2fc;
+    border-color: var(--info);
+}
+
+.lista-ayuda {
+    padding-left: 20px;
+    color: var(--texto-suave);
+}
+
+code {
+    padding: 1px 5px;
+    font-size: 0.9em;
+    background: #f1f3f7;
+    border-radius: 4px;
+}
+
+/* ---------- Dashboard ---------- */
+
+.panel {
+    margin-bottom: 18px;
+    padding: 18px 20px;
+    text-align: left;
+    background: #f7f9fc;
+    border: 1px solid #e6eaf1;
+    border-radius: 12px;
+}
+
+.datos {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 8px 18px;
+    margin: 0;
+}
+
+.datos dt {
+    font-weight: 600;
+    color: var(--texto-suave);
+}
+
+.datos dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.tabla-scroll {
+    overflow-x: auto;
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.tabla th,
+.tabla td {
+    padding: 8px 10px;
+    text-align: left;
+    border-bottom: 1px solid #e3e8ef;
+    white-space: nowrap;
+}
+
+.tabla th {
+    color: var(--texto-suave);
+    font-weight: 600;
+}
+
+.etiqueta {
+    display: inline-block;
+    padding: 2px 10px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    border-radius: 999px;
+}
+
+.etiqueta-ok {
+    color: var(--exito);
+    background: #e3f4ea;
+}
+
+.etiqueta-error {
+    color: var(--error);
+    background: #fbe5e5;
+}
+
+/* ---------- Pie de página ---------- */
+
+.pie {
+    padding: 0 16px 18px;
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.85);
+    text-align: center;
+}
+
+/* ---------- Accesibilidad ---------- */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tarjeta {
+        animation: none;
+    }
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 480px) {
+    .contenedor {
+        align-items: flex-start;
+        padding: 20px 12px;
+    }
+
+    .tarjeta {
+        padding: 28px 20px 22px;
+        border-radius: 12px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .requisitos {
+        grid-template-columns: 1fr;
+    }
+
+    .datos {
+        grid-template-columns: 1fr;
+        gap: 2px;
+    }
+
+    .datos dd {
+        margin-bottom: 8px;
+    }
+}
